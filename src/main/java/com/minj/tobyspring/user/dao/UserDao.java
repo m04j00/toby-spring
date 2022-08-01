@@ -5,16 +5,18 @@ import com.minj.tobyspring.user.domain.User;
 import java.sql.*;
 
 public class UserDao {
+    // 1.3.1 클래스 분리
     private SimpleConnectionMaker simpleConnectionMaker;
+    // 1.4.1 인터페이스 도입
+    private ConnectionMaker connectionMaker; // 인터페이스를 통해 오브젝트를 접근해 구체적인 클래스 정보가 필요없다.
     public UserDao(){
         simpleConnectionMaker = new SimpleConnectionMaker();
+        connectionMaker = new KConnectionMaker(); // 클래스 이름 등장
     }
     public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = simpleConnectionMaker.makeNewConnection();
-
-        PreparedStatement ps = c.prepareStatement(
-                "insert into users(id, name, password) values(?, ?, ?)"
-        );
+//      Connection c = simpleConnectionMaker.makeNewConnection();
+        Connection c = connectionMaker.makeConnection();
+        PreparedStatement ps = c.prepareStatement("insert into users(id, name, password) values(?, ?, ?)");
 
         ps.setString(1, user.getId());
         ps.setString(2, user.getName());
@@ -26,8 +28,8 @@ public class UserDao {
     }
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-       Connection c = simpleConnectionMaker.makeNewConnection();
-
+//      Connection c = simpleConnectionMaker.makeNewConnection();
+        Connection c = connectionMaker.makeConnection();
         PreparedStatement ps = c.prepareStatement(
                 "select * from users where id = ?"
         );
