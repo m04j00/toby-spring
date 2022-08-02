@@ -10,3 +10,5 @@
 7. 스프링 핵심 기술의 응용
 8. 스프링이란 무엇인가?
 9. 스프링 프로젝트 시작하기 
+
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fm04j00%toby-spring%2Fhit-counter&count_bg=%238AE994&title_bg=%23D0D0D0&icon=github.svg&icon_color=%23FFFFFF&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
