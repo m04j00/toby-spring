@@ -2,7 +2,15 @@ package com.minj.tobyspring.user.dao;
 
 public class DaoFactory {
     public UserDao userDao() {
-        ConnectionMaker connectionMaker = new KConnectionMaker();
-        return new UserDao(connectionMaker);
+        return new UserDao(connectionMaker());
+    }
+    public AccountDao accountDao(){
+        return new AccountDao(connectionMaker());
+    }
+    public MessageDao messageDao(){
+        return new MessageDao(connectionMaker());
+    }
+    public ConnectionMaker connectionMaker(){
+        return new KConnectionMaker();
     }
 }
