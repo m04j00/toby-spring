@@ -6,12 +6,8 @@ import java.sql.SQLException;
 
 public class UserDaoTest {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        // 1.3.3 관계 설정 책임의 분리
-        // UserDao가 사용할 ConnectionMaker 구현 클래스를 결정하고 오브젝트를 만든다.
-        ConnectionMaker connectionMaker = new KConnectionMaker();
 
-        // 사용할 ConnectionMaker type의 object 제공 -> 두 오브젝트 사이의 의존관계 설정 효과
-        UserDao dao = new UserDao(connectionMaker);
+        UserDao dao = new DaoFactory().userDao();
 
         User user = new User();
         user.setId("m772");
